@@ -47,7 +47,8 @@ ember g route login
 
 Then let's modify the template for our template to accept user input with fields for `username` and `password`:
 
-```handlebars
+```hbs
+{% raw %}
 <!-- app/templates/login.hbs -->
 <h2>Login</h2>
 
@@ -57,6 +58,7 @@ Then let's modify the template for our template to accept user input with fields
 
   <button>Login</button>
 </form>
+{% endraw %}
 ```
 
 Before writing an action handler for `loginUser`, we will need to define an authenticator for our application to use.
@@ -141,7 +143,8 @@ export default Ember.Component.extend({
 
 Now we can use the `isAuthenticated` property of the session to show different menu items to guests vs logged in users:
 
-```handlebars
+```hbs
+{% raw %}
 <!-- app/templates/components/top-nav.hbs -->
 <nav>
   <ul>
@@ -155,6 +158,7 @@ Now we can use the `isAuthenticated` property of the session to show different m
     {{/if}}
   </ul>
 </nav>
+{% endraw %}
 ```
 
 ## Logging Out Users
@@ -162,7 +166,8 @@ Now we can use the `isAuthenticated` property of the session to show different m
 While most API implementations will time out user sessions, we also want to allow our user to log themselves out.
 For this, let's add an link with a click action to our `top-nav` component:
 
-```handlebars
+```hbs
+{% raw %}
 {{!-- app/templates/components/top-nav.hbs --}}
 <nav>
   <ul>
@@ -177,6 +182,7 @@ For this, let's add an link with a click action to our `top-nav` component:
     {{/if}}
   </ul>
 </nav>
+{% endraw %}
 ```
 
 Then we will need to handle this new `logout` action in our component.
