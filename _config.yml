@@ -6,12 +6,12 @@
 title:            Ember Simple Auth
 tagline:          'Guides'
 description:      'A set of getting started guides for working with <a href="https://ember-simple-auth.com" target="_blank">Ember Simple Auth</a>.'
-url:              https://rtablada.github.io/simple-auth-guide/
+url:              http://rtablada.github.io/simple-auth-guide/
 baseurl:          http://rtablada.github.io/simple-auth-guide/
 
 author:
   name:           'Ryan Tablada'
-  url:            https://twitter.com/ryantablada
+  url:            http://twitter.com/ryantablada
 
 github:
   repo:           https://github.com/rtablada/simple-auth-guide
