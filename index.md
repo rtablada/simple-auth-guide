@@ -41,7 +41,7 @@ If the current project has another route listed as the `path: '/'`, we will need
 Ember Simple Auth allows our app to communicate back and forth with our API to login our users.
 To do this, we'll start by creating a login route:
 
-```
+```sh
 ember g route login
 ```
 
@@ -108,3 +108,94 @@ export default OAuth2PasswordGrant.extend({
   serverTokenEndpoint: 'http://localhost:3000/oauth/token',
 });
 ```
+
+Now our user can login to our server using their username and password.
+
+## Protecting routes
+
+In every application, there are certain routes that should be blocked from guest users.
+To require a user to be logged in to access a route, we can use the `AuthenticatedRoute` mix in:
+
+```js
+// app/routes/index.js
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+
+export default Ember.Route.extend(AuthenticatedRouteMixin);
+```
+
+Now if we try to visit the home page with the user logged out, we will be redirected to the login page instead.
+
+## Displaying Session Info in Components
+
+To show the information from the current session, we have to inject the `session` service into a component.
+For this example, we'll create a `top-nav` component using `ember g component top-nav`:
+
+```js
+// app/components/top-nav.js
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  session: Ember.inject.service(),
+});
+```
+
+Now we can use the `isAuthenticated` property of the session to show different menu items to guests vs logged in users:
+
+```handlebars
+<!-- app/templates/components/top-nav.hbs -->
+<nav>
+  <ul>
+    {{#if session.isAuthenticated}}
+      {{!-- These are only shown to logged in users --}}
+      <li>{{#link-to "admin.dogs"}}Dogs{{/link-to}}</li>
+      <li>{{#link-to "admin.cats"}}Cats{{/link-to}}</li>
+    {{else}}
+      {{!-- This is only shown to guest users --}}
+      <li>{{#link-to "login"}}Login{{/link-to}}</li>
+    {{/if}}
+  </ul>
+</nav>
+```
+
+## Logging Out Users
+
+While most API implementations will time out user sessions, we also want to allow our user to log themselves out.
+For this, let's add an link with a click action to our `top-nav` component:
+
+```handlebars
+{{!-- app/templates/components/top-nav.hbs --}}
+<nav>
+  <ul>
+    {{#if session.isAuthenticated}}
+      {{!-- These are only shown to logged in users --}}
+      <li>{{#link-to "admin.dogs"}}Dogs{{/link-to}}</li>
+      <li>{{#link-to "admin.cats"}}Cats{{/link-to}}</li>
+      <li><a href="#" onclick={{action 'logout'}}>Logout</a></li>
+    {{else}}
+      {{!-- This is only shown to guest users --}}
+      <li>{{#link-to "login"}}Login{{/link-to}}</li>
+    {{/if}}
+  </ul>
+</nav>
+```
+
+Then we will need to handle this new `logout` action in our component.
+Here we will run the `invalidate` method on the Ember Simple Auth session:
+
+```js
+// app/components/top-nav.js
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  session: Ember.inject.service(),
+
+  actions: {
+    logout() {
+      this.get('session').invalidate();
+    },
+  },
+});
+```
+
+Now if our app is logged in, we should be able to click on the "Logout" button to invalidate the current session.
+Then our app will reload and we should be redirected to the `login` route.

@@ -1,6 +1,6 @@
 # Dependencies
 markdown:         redcarpet
-highlighter:      pygments
+# highlighter:      pygments
 
 # Setup
 title:            Ember Simple Auth
