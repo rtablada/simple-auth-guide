@@ -1,10 +1,6 @@
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
-
-# Permalinks
-permalink:        pretty
-# relative_permalinks: true
+# markdown:         redcarpet
+# highlighter:      pygments
 
 # Setup
 title:            Ember Simple Auth
@@ -16,9 +12,6 @@ baseurl:          /
 author:
   name:           'Ryan Tablada'
   url:            https://twitter.com/ryantablada
-
-# Custom vars
-version:          2.1.0
 
 github:
   repo:           https://github.com/rtablada/simple-auth-guide
