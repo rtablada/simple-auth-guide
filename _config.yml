@@ -1,5 +1,3 @@
-gems: [jekyll-paginate]
-
 # Dependencies
 markdown:         redcarpet
 highlighter:      pygments
@@ -18,8 +16,6 @@ baseurl:          /
 author:
   name:           'Ryan Tablada'
   url:            https://twitter.com/ryantablada
-
-paginate:         5
 
 # Custom vars
 version:          2.1.0

@@ -42,7 +42,7 @@ ember g route login
 
 Then let's modify the template for our template to accept user input with fields for `username` and `password`:
 
-```hbs
+```handlebars
 <!-- app/templates/login.hbs -->
 <h2>Login</h2>
 
