@@ -1,0 +1,28 @@
+gems: [jekyll-paginate]
+
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+# relative_permalinks: true
+
+# Setup
+title:            Ember Simple Auth
+tagline:          'Guides'
+description:      'A set of getting started guides for working with <a href="https://ember-simple-auth.com" target="_blank">Ember Simple Auth</a>.'
+url:              https://rtablada.github.io/simple-auth-guide
+baseurl:          /
+
+author:
+  name:           'Ryan Tablada'
+  url:            https://twitter.com/ryantablada
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/rtablada/simple-auth-guide
